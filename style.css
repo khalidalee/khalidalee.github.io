@@ -432,6 +432,11 @@ body.light-mode .navbar {
     font-size: 1.05rem;
 }
 
+.employer {
+    color: var(--brand-secondary);
+    font-weight: 700;
+}
+
 .date {
     display: inline-block;
     background-color: rgba(0, 180, 216, 0.08);
@@ -608,14 +613,18 @@ footer {
 /* Strict page configuration restricting content overflow */
 #cv-pdf-template .pdf-page {
     width: 816px !important;
-    height: 1056px !important;
-    max-height: 1056px !important;
     box-sizing: border-box !important;
-    padding: 25px 35px !important; /* Reduced padding to maximize workspace */
+    padding: 30px 40px !important; /* Increased padding for better margins */
     margin: 0 !important;
-    overflow: hidden !important; 
+    overflow: visible !important; 
     position: relative !important;
     background-color: #ffffff !important;
+    color: #0f172a !important;
+}
+
+/* Ensure consistent font and color for the PDF template */
+#cv-pdf-template {
+    font-family: 'Inter', sans-serif !important;
     color: #0f172a !important;
 }
 
@@ -623,13 +632,96 @@ footer {
 #cv-pdf-template table {
     width: 100% !important;
     border-collapse: collapse !important;
-    margin: 0 !important;
+    margin: 15px 0 !important; /* Added margin around tables */
+    margin: 10px 0 !important; /* Tighter margin around tables */
     padding: 0 !important;
+    border: 1px solid #e2e8f0 !important; /* Subtle border around tables */
+    border-radius: 5px !important;
+    overflow: hidden !important; /* Ensures border-radius applies to content */
+}
+
+/* PDF Specific Layout Classes */
+.pdf-header { 
+    margin-bottom: 20px; 
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0 !important; /* Subtle separator below header */
+}
+.pdf-section-title { 
+    font-size: 1.1rem !important; /* Slightly larger font */
+    color: #0077b6 !important; 
+    border-bottom: 2px solid #0077b6 !important; /* Prominent border */
+    padding-bottom: 5px !important;
+    margin-top: 35px !important; /* Increased space above sections for distinctiveness */
+    margin-top: 25px !important; /* Distinctive space between major sections */
+    margin-bottom: 15px !important; /* More space below titles */
+    text-transform: uppercase;
+    letter-spacing: 0.08em; /* Increased letter spacing */
+    font-weight: 700 !important;
+    page-break-before: auto !important; /* Allow break before if needed, but prefer not */
+}
+.pdf-table th { 
+    background-color: #f8fafc !important; /* Light background for table headers */
+    color: #475569 !important; 
+    font-weight: bold !important; 
+    font-size: 0.78rem !important; 
+    padding: 8px 10px !important; /* More padding */
+    border-bottom: 1px solid #e2e8f0 !important;
+    text-align: left;
+}
+.pdf-table td { 
+    padding: 8px 10px !important; /* More padding */
+    border-bottom: 1px solid #f1f5f9 !important; 
+    text-align: left;
+}
+.pdf-table tr:last-child td {
+    border-bottom: none !important; /* No border on the last row of a table */
+}
+.experience-item { 
+    margin-bottom: 25px !important; /* More space between experience items */
+    padding: 15px 20px !important; /* Padding inside the item */
+    margin-bottom: 12px !important; /* Tighter space between individual roles */
+    padding: 10px 15px !important; /* Tighter padding inside experience blocks */
+    border: 1px solid #e2e8f0 !important; /* Subtle border */
+    border-radius: 5px !important;
+    background-color: #fdfdfe !important; /* Very light background */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important; /* Subtle shadow */
+}
+.experience-item p { margin-bottom: 5px !important; } /* More space for paragraphs within item */
+.experience-item p { margin-bottom: 3px !important; } /* Tight spacing for designation/employer lines */
+
+/* Prevent splitting elements across pages for continuity */
+.experience-item, .pdf-table, .pdf-section-title {
+    page-break-inside: avoid !important;
 }
 
 /* PDF Typography Optimization to guarantee 2-page fit */
-#cv-pdf-template h1 { font-size: 2.1rem !important; }
-#cv-pdf-template p, 
-#cv-pdf-template td { font-size: 0.8rem !important; line-height: 1.35 !important; }
-#cv-pdf-template ul { margin-top: 2px !important; margin-bottom: 2px !important; }
-#cv-pdf-template li { font-size: 0.78rem !important; line-height: 1.35 !important; margin-bottom: 4px !important; }
+#cv-pdf-template h1 { font-size: 2.2rem !important; margin-bottom: 5px !important; }
+#cv-pdf-template h3 { /* Used for sub-headings like "Executive Summary" */
+    font-size: 1.05rem !important; /* Slightly larger for sub-headings */
+    margin-top: 20px !important; /* More space above sub-headings */
+    margin-bottom: 10px !important;
+}
+#cv-pdf-template p { margin-bottom: 10px !important; } /* Explicit margin for paragraphs */
+#cv-pdf-template p { margin-bottom: 4px !important; } /* Subtle split between paragraphs */
+#cv-pdf-template p,
+#cv-pdf-template td { font-size: 0.8rem !important; line-height: 1.45 !important; } /* Increased line height for readability, now with paragraph margin */
+#cv-pdf-template ul { margin-top: 5px !important; margin-bottom: 5px !important; padding-left: 20px !important; } /* Added padding for bullets */
+#cv-pdf-template li { font-size: 0.78rem !important; line-height: 1.4 !important; margin-bottom: 5px !important; } /* Increased line height and margin for bullets */
+#cv-pdf-template ul { margin-top: 3px !important; margin-bottom: 3px !important; padding-left: 20px !important; } /* Tighter list container spacing */
+#cv-pdf-template li { font-size: 0.78rem !important; line-height: 1.4 !important; margin-bottom: 2px !important; } /* Tighter spacing between individual bullet points */
+
+/* Specific styling for designation, employer, and date within experience items */
+.experience-item strong[style*="color: #0b1329"] { /* Designation */
+    font-size: 0.9rem !important;
+    margin-bottom: 3px !important;
+    display: block !important; /* Ensure it takes its own line */
+}
+.experience-item strong[style*="color: #0077b6"] { /* Employer */
+    font-size: 0.85rem !important;
+    margin-bottom: 3px !important;
+    display: inline-block !important; /* Keep it inline with date */
+}
+.experience-item span[style*="float: right"] { /* Date */
+    font-size: 0.8rem !important;
+    margin-top: 0 !important;
+}
